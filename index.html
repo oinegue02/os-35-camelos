@@ -3,186 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Homem que Calculava - Prof. Eugênio</title>
+    <title>O Enigma dos 35 Camelos - O Homem que Calculava</title>
     <style>
+        /* CSS para Estilização Elegante e Chamativa */
         :root {
-            --primary: #2c3e50;
-            --accent: #d4af37; /* Tom dourado para elegância */
-            --bg: #fdfcf0;
-            --text: #333;
+            --primary-dark: #2c3e50; /* Azul Marinho Sofisticado */
+            --accent-gold: #c9a063; /* Tom Ouro Velho */
+            --bg-creme: #fdfcf5; /* Fundo Creme Suave */
+            --text-main: #34495e;
+            --shadow: 0 10px 25px rgba(0,0,0,0.08);
+            --border-radius: 10px;
         }
 
         body {
-            font-family: 'Georgia', serif;
-            background-color: var(--bg);
-            color: var(--text);
+            font-family: 'Georgia', serif; /* Fonte clássica para narração */
+            background-color: var(--bg-creme);
+            color: var(--text-main);
             line-height: 1.8;
             margin: 0;
-            padding: 20px;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--accent);
+        .main-card {
+            background: #ffffff;
+            max-width: 850px;
+            width: 100%;
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border-top: 6px solid var(--accent-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Detalhe Decorativo de Fundo (Círculo Dourado) */
+        .main-card::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(201, 160, 99, 0.1);
+            border-radius: 50%;
+            z-index: 0;
         }
 
         header {
             text-align: center;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 35px;
+            padding-bottom: 15px;
+            position: relative;
+            z-index: 1;
         }
 
         header p {
             font-variant: small-caps;
-            letter-spacing: 2px;
-            color: var(--accent);
+            letter-spacing: 3px;
+            color: var(--accent-gold);
             margin: 0;
+            font-size: 0.9rem;
+            font-weight: bold;
         }
 
         h1 {
-            color: var(--primary);
-            font-size: 2.2rem;
-            margin: 10px 0;
+            color: var(--primary-dark);
+            font-size: 2.5rem;
+            margin: 15px 0 5px 0;
+            font-family: 'Times New Roman', Times, serif;
         }
 
-        .historia {
+        h2.subtitle {
+            font-weight: normal;
+            color: var(--text-main);
+            font-size: 1.1rem;
             font-style: italic;
-            color: #555;
+            margin-top: 0;
+        }
+
+        .introducao {
+            font-size: 1.2rem;
             text-align: justify;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
         }
 
-        .painel-logico {
-            background: #f9f9f9;
-            border: 1px dashed var(--accent);
+        .desafio-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid var(--primary-dark);
             padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
+            margin: 30px 0;
+            border-radius: 4px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .desafio-box h3 {
+            color: #c0392b; /* Cor para alerta/problema */
+            margin-top: 0;
+        }
+
+        .logic-panel {
+            margin-top: 30px;
+            display: none; /* Escondido inicialmente */
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h3.solucao-titulo {
+            color: #27ae60; /* Verde para solução */
+            text-align: center;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .conclusao-texto {
+            text-align: justify;
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
             margin-top: 20px;
         }
 
-        th, td {
-            padding: 12px;
+        /* Estilização da Tabela de Comparação */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte moderna para dados */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .comparison-table th, .comparison-table td {
             text-align: left;
+            padding: 15px;
             border-bottom: 1px solid #ddd;
         }
 
-        .destaque {
+        .comparison-table th {
+            background-color: var(--primary-dark);
+            color: white;
             font-weight: bold;
-            color: #c0392b;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
         }
 
-        .solucao {
-            color: #27ae60;
-            font-weight: bold;
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Destaques de Cores na Tabela */
+        .col-antes { color: #e74c3c; font-weight: bold; } /* Vermelho para o problema */
+        .col-depois { color: #2ecc71; font-weight: bold; } /* Verde para a solução */
+        .col-ganho { color: var(--accent-gold); font-weight: bold; font-size: 1.1rem;}
+
+        /* Botão Chamativo */
+        .cta-button {
+            background-color: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 40px auto;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-gold);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(201, 160, 99, 0.4);
         }
 
         footer {
-            margin-top: 40px;
+            margin-top: 50px;
             text-align: center;
             font-size: 0.9rem;
-            color: #777;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            font-style: italic;
         }
 
-        button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: 0.3s;
-            display: block;
-            margin: 20px auto;
-        }
-
-        button:hover {
-            background-color: var(--accent);
-            color: var(--primary);
-        }
-
+        /* Responsividade para Celulares */
         @media (max-width: 600px) {
-            .container { padding: 20px; }
-            h1 { font-size: 1.6rem; }
+            body { padding: 15px; }
+            .main-card { padding: 30px; }
+            h1 { font-size: 1.9rem; }
+            .comparison-table { font-size: 0.9rem; }
+            .cta-button { width: 100%; padding: 15px; font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="main-card">
         <header>
             <p>Por Eugênio Pereira da Silva</p>
-            <h1>O Problema dos 35 Camelos</h1>
+            <h1>O Enigma dos 35 Camelos</h1>
+            <h2 class="subtitle">Uma Lição de Lógica e Aritmética Superior</h2>
         </header>
 
-        <section class="historia">
-            "Três irmãos receberam uma herança de 35 camelos. Segundo o testamento: o primogênito deveria receber a metade; o segundo, a terça parte; e o mais moço, a nona parte. Contudo, 35 não é divisível por 2, nem por 3, nem por 9. Beremiz Samir, o Homem que Calculava, resolveu o impasse de forma brilhante..."
+        <section class="introducao">
+            <p>Imagine-se no deserto, diante de uma herança impossível. Três irmãos, tomados pela angústia, não conseguem dividir os 35 camelos de seu pai. O testamento era claro, mas a matemática parecia cruel:</p>
+            
+            <div class="desafio-box">
+                <h3>O Impasse do Deserto:</h3>
+                <ul>
+                    <li>Ao primogênito: <strong>a metade (1/2)</strong> dos camelos.</li>
+                    <li>Ao segundo: <strong>a terça parte (1/3)</strong>.</li>
+                    <li>Ao mais moço: <strong>a nona parte (1/9)</strong>.</li>
+                </ul>
+                <p>Mas como dividir 35 por 2, por 3 ou por 9 sem sacrificar os animais? A discórdia reinava... até a chegada de Beremiz Samir.</p>
+            </div>
+            
+            <p>Beremiz, o lendário Homem que Calculava, propôs uma solução tão audaciosa que parecia loucura. Ele resolveu o impasse de forma brilhante, sem prejudicar nenhum herdeiro e ainda saindo lucrando!</p>
         </section>
 
-        <div class="painel-logico" id="resultado">
-            <p>Clique no botão para ver a mágica aritmética de Beremiz Samir.</p>
+        <button class="cta-button" id="btnSolucao" onclick="revelarSolucao()">Descubra a Cartada Final</button>
+
+        <div class="logic-panel" id="painelSolucao">
+            <h3 class="solucao-titulo">A Engenhosidade do Calculista</h3>
+            
+            <p class="conclusao-texto">Beremiz Samir emprestou o seu próprio camelo ao lote, totalizando <strong>36 camelos</strong>. Com um número divisível, a mágica aconteceu. Veja a comparação detalhada e o lucro surpreendente de cada irmão:</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Herdeiro</th>
+                        <th>Parte (Fração)</th>
+                        <th>Antes (de 35)</th>
+                        <th>Depois (de 36)</th>
+                        <th>Ganho Real</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Irmão Mais Velho</td>
+                        <td>Metade (1/2)</td>
+                        <td class="col-antes">17,5</td>
+                        <td class="col-depois">18</td>
+                        <td class="col-ganho">+0,5</td>
+                    </tr>
+                    <tr>
+                        <td>Segundo Irmão</td>
+                        <td>Terça Parte (1/3)</td>
+                        <td class="col-antes">11,66...</td>
+                        <td class="col-depois">12</td>
+                        <td class="col-ganho">+0,33...</td>
+                    </tr>
+                    <tr>
+                        <td>Irmão Mais Moço</td>
+                        <td>Nona Parte (1/9)</td>
+                        <td class="col-antes">3,88...</td>
+                        <td class="col-depois">4</td>
+                        <td class="col-ganho">+0,11...</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="conclusao-texto">
+                <strong>A Conta Final de Beremiz:</strong><br>
+                Soma dos camelos entregues aos irmãos: 18 + 12 + 4 = <strong>34 camelos</strong>.<br>
+                Do lote de 36, sobraram 2 camelos. O primeiro, Beremiz pegou de volta (o seu camelo emprestado). O segundo, ele recebeu dos irmãos agradecidos como pagamento pelo seu raciocínio superior!
+            </p>
         </div>
 
-        <button onclick="exibirLogica()">Ver Solução de Beremiz</button>
-
         <footer>
-            Inspirado na obra de Malba Tahan | Conteúdo Educacional - Matemática & Lógica
+            Inspirado na obra de Malba Tahan | Material Didático - Lógica e Matemática para TI
         </footer>
     </div>
 
     <script>
-        function exibirLogica() {
-            const painel = document.getElementById('resultado');
-            
-            painel.innerHTML = `
-                <h3>A Engenhosidade do Calculista:</h3>
-                <p>Beremiz adicionou o seu próprio camelo ao lote, totalizando <strong>36 camelos</strong>.</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Herdeiro</th>
-                            <th>Parte (Divisão)</th>
-                            <th>Antes (de 35)</th>
-                            <th>Depois (de 36)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Irmão Mais Velho</td>
-                            <td>Metade (1/2)</td>
-                            <td class="destaque">17,5</td>
-                            <td class="solucao">18</td>
-                        </tr>
-                        <tr>
-                            <td>Segundo Irmão</td>
-                            <td>Terça Parte (1/3)</td>
-                            <td class="destaque">11,66...</td>
-                            <td class="solucao">12</td>
-                        </tr>
-                        <tr>
-                            <td>Irmão Mais Moço</td>
-                            <td>Nona Parte (1/9)</td>
-                            <td class="destaque">3,88...</td>
-                            <td class="solucao">4</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p style="margin-top:20px;">
-                    <strong>Soma total:</strong> 18 + 12 + 4 = <strong>34 camelos</strong>.<br>
-                    Sobraram 2 camelos: um que pertencia a Beremiz e outro que ele recebeu como lucro por resolver o problema!
-                </p>
-            `;
+        // Função para revelar a solução com animação e esconder o botão
+        function revelarSolucao() {
+            document.getElementById('painelSolucao').style.display = 'block';
+            document.getElementById('btnSolucao').style.display = 'none';
         }
     </script>
 </body>
